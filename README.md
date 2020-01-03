@@ -13,6 +13,8 @@ See Project Report [here](https://github.com/JRC1995/Chatbot/blob/master/Project
 * The corpus [here](https://github.com/JRC1995/Chatbot/tree/master/Scripted/Chatterbot_Corpus) is taken from [Chatterbot_Corpus library](https://github.com/gunthercox/chatterbot-corpus/tree/master/chatterbot_corpus/data/english)
 * [Mobashir Sadat](https://www.linkedin.com/in/mobashir-sadat-2b32a3112/) prepared and processed the Chatterbot Corpus and created the diagrams. 
 * [Faiss](https://github.com/facebookresearch/faiss), [Huggingface's Transformers](https://github.com/huggingface/transformers), and [Tensorflow Hub](https://www.tensorflow.org/hub/overview) form important components of the project. We use pre-trained models of [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) through Tensorflow Hub.
+* Utils/functions.py and Utils/functions_old.py utilize a code from here: https://gist.github.com/nealrs/96342d8231b75cf4bb82
+for contraction expansion.
 
 ## How conversation looks like:
 
