@@ -16,6 +16,9 @@ See Project Report [here](https://github.com/JRC1995/Chatbot/blob/master/Project
 
 ## How conversation looks like:
 
+(Most of them are retrieved from Reddit Database)
+(See the project report for generative examples)
+
 ```
 Say Something: Hello, how are you?
 
