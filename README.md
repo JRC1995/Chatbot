@@ -16,6 +16,11 @@ See Project Report [here](https://github.com/JRC1995/Chatbot/blob/master/Project
 * Utils/functions.py and Utils/functions_old.py utilize a code from here: https://gist.github.com/nealrs/96342d8231b75cf4bb82
 for contraction expansion.
 
+
+## Disclaimer:
+
+Both the Generative and Retrieval Module runs on Reddit data - which can be offensive or toxic. (although for the retrieval module, I haven't shared its data and whatever data you prepare is your responsibility) 
+
 ## How conversation looks like:
 
 (Most of them are retrieved from Reddit Database)
@@ -361,8 +366,7 @@ That is here you map intents to potential queries and utterances related to that
 
 You also need to keep downloaded Reddit data in Scripted/Random_Reddit_Data/ directory.
 
-For this, I used Google Big Query to query out data from different subreddits and prepared different CSVs. I prepared jokesq.csv from r/Jokes, showerthoughsq.csv from r/Showerthoughts, tilq.csv from r/todayilearned, and nostupidq.csv from r/NoStupidQuestion. Each of these csv should have a 'title' field (denotes thread title), and jokesq.csv should also have the 'self-text' field (denotes the original post of a thread). Each of these csv are prepared from reddit submissions (not comments). In addition to all these, I also prepared writingpromptsa.csv from r/WritingPrompts but for this the necessary field is 'body' (denotes the comment text) and it should only have top level comments from writing prompts. 
-
+For this, I used Google Big Query to query out data from different subreddits and prepared different CSVs. I prepared jokesq.csv from r/Jokes, showerthoughsq.csv from r/Showerthoughts, tilq.csv from r/todayilearned, and nostupidq.csv from r/NoStupidQuestion. Each of these csv should have a 'title' field (denotes thread title), and jokesq.csv should also have the 'self-text' field (denotes the original post of a thread). Each of these csv are prepared from reddit submissions (not comments). In addition to all these, I also prepared writingpromptsa.csv from r/WritingPrompts but for this the necessary field are 'body' (denotes the comment text), 'parent_id' (denotes id of the immediate parent -comment or thread), and 'link_id' (denotes id of the thread in which the comment is made). This fields are essentially table attributes when you are using sql on Google Query. 
 For more about downloading Reddit Data from Google Big Query see:
 
 
@@ -378,7 +382,7 @@ In my case, I downloaded data from last few years (the latest year being 2018) a
 
 How are these data use? Depending on the user utterances, certain 'command codes' may be activated by the scripted module and depending on the command codes the retrieved response may come from a certain csv file from here.
 
-For example, if you say "I want to hear a joke", the scripted module may return "\<JOKE\>" as an answer. "\<JOKE\>" will then be identified as not a natural language response but a "command code" which is mapped with some special action. In this case the special action, is retrieving randomly some title and self-text from jokesq.csv and respond with the concatenation of the two. 
+For example, if you say "I want to hear a joke", the scripted module may return "\<JOKE\>" as an answer. "\<JOKE\>" will then be identified as not a natural language response but a "command code" which is mapped with some special action. In this case the special action is randomly retrieving a row from jokesq.csv and respond with the concatenation of the title and self-text in that row. 
 
 
 ### Component # 2: Retrieval Module
