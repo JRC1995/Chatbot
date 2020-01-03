@@ -359,8 +359,36 @@ Rum setup.py inside the [scripted folder](https://github.com/JRC1995/Chatbot/tre
 ```
 That is here you map intents to potential queries and utterances related to that intent. You don't need to exhaustive - the intent will be detected based on soft embedding based semantic-similarity search not through hard pattern matching.
 
+You also need to keep downloaded Reddit data in Scripted/Random_Reddit_Data/ directory.
+
+For this, I used Google Big Query to query out data from different subreddits and prepared different CSVs. I prepared jokesq.csv from r/Jokes, showerthoughsq.csv from r/Showerthoughts, tilq.csv from r/todayilearned, and nostupidq.csv from r/NoStupidQuestion. Each of these csv should have a 'title' field (denotes thread title), and jokesq.csv should also have the 'self-text' field (denotes the original post of a thread). Each of these csv are prepared from reddit submissions (not comments). In addition to all these, I also prepared writingpromptsa.csv from r/WritingPrompts but for this the necessary field is 'body' (denotes the comment text) and it should only have top level comments from writing prompts. 
+
+For more about downloading Reddit Data from Google Big Query see:
+
+
+https://pushshift.io/using-bigquery-with-reddit-data/
+
+
+https://www.reddit.com/r/bigquery/comments/3cej2b/17_billion_reddit_comments_loaded_on_bigquery/
+
+
+You can also use this: https://files.pushshift.io/reddit/ (download comments and submissions from whichever year) and prepare the corresponding csv files from them.  
+
+In my case, I downloaded data from last few years (the latest year being 2018) and I also used 'scores' (denotes upvotes) as filter (I only kept highly upvoted ones). The threshold of score depends on the subreddits (popular subreddits can have frequent comments and posts with thousands of upvotes, in less popular ones getting 5 upvotes can be a big deal). 
+
+How are these data use? Depending on the user utterances, certain 'command codes' may be activated by the scripted module and depending on the command codes the retrieved response may come from a certain csv file from here.
+
+For example, if you say "I want to hear a joke", the scripted module may return "<JOKE>" as an answer. "<JOKE>" will then be identified as not a natural language response but a "command code" which is mapped with some special action. In this case the special action, is retrieving randomly some title and self-text from jokesq.csv and respond with the concatenation of the two. 
+
 
 ### Component # 2: Retrieval Module
+
+Retrieval Module is similar to scripted module. It also deals with query-responses mappings and retrieving based on cosine-similarity or dot-product between the encodings of preset queries and user utterances. The difference is that it operates solely on large scale organic data (precisely, it's Reddit data again). To prepare this module we have to again prepare a lot of csv files from different subreddits. 
+
+
+
+
+
 ### Component # 3: Dialog-Act Classifier Module
 ### Component # 4: Generative Module
 ### Component # 5: Ranker Module
