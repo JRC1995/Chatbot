@@ -240,10 +240,21 @@ This shows how the directory should be set up. It shows all the files and folder
 ## Project Setup
 
 ### Component # 0: Sentence Encoder Module
-The sentence encoder is one of the most fundamental components of the project. It uses a concatenation of [Multi-context ConveRT](https://github.com/PolyAI-LDN/polyai-models#multi-context-convert) and [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) to encode utterances. The encoder utterances are used for almost all the other modules - for retrieval, for classification etc. For this module to work you need download and store the model in the appropriate directory inside Sentence_Encoder. Refer to the directory tree for the extact location. Specifically, the content inside tensorflow-hub pretrained ConveRT model should go within Sentence_Encoder/Embeddings/ConvRT directory, and Universal Sentence Encoder Multilingual QA should go within Sentence_Encoder/Embeddings/USE_QA.
+The sentence encoder is one of the most fundamental components of the project. It uses a concatenation of [Multi-context ConveRT](https://github.com/PolyAI-LDN/polyai-models#multi-context-convert) and [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) to encode utterances. The encoder utterances are used for almost all the other modules - for retrieval, for classification etc. For this module to work you need download and store the model in the appropriate directory inside Sentence_Encoder. Refer to the directory tree for the extact location. Specifically, the content inside tensorflow-hub pretrained ConveRT model should go within Sentence_Encoder/Embeddings/ConvRT directory, and Universal Sentence Encoder Multilingual QA should go within Sentence_Encoder/Embeddings/USE_QA. The sentence encoder uses different components for encoding user utterances than that for encoding response candidates. It also can take context into account. See project report for details.
 
 
 ### Component # 1: Scripted Module
+
+Rum setup.py inside the [scripted folder](https://github.com/JRC1995/Chatbot/tree/master/Scripted) to process all the necessary documents for this module. This module mostly prepares "query-responses" pair mappings. Given an utterance, the model finds the best matching query (by measuring cosine similarity or dot product of their encodings) and returns its corresponding responses. 
+
+[Here](https://github.com/JRC1995/Chatbot/blob/master/Scripted/Subscripts/intent_response_script.py) you can write your "intent to response" maps. You can create any kind of new 'intent' (say '<fetch_water>') and you can then write the list of candidate responses for that intent. Instead of writing natural language responses you can also type in "command codes" (say <get_water>) and later upon detecting the command codes you can make the AI take any related action you want. [Here](https://github.com/JRC1995/Chatbot/blob/master/Scripted/Subscripts/intent_query_script.py) you can write "intent to query" maps. For example:
+
+```
+'<fetch_water>':['bring me some water','I want some water']
+```
+That is here you map intents to potential queries and utterances related to that intent. You don't need to exhaustive - the intent will be detected based on soft embedding based semantic-similarity search not through hard pattern matching.
+
+
 ### Component # 2: Retrieval Module
 ### Component # 3: Dialog-Act Classifier Module
 ### Component # 4: Generative Module
