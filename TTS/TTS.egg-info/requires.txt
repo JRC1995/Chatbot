@@ -1,0 +1,11 @@
+librosa==0.5.1
+unidecode==0.4.20
+tensorboardX
+matplotlib==2.0.2
+Pillow
+flask
+lws
+
+[bin]
+tqdm
+requests

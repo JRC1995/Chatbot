@@ -1,0 +1,9 @@
+Metadata-Version: 2.1
+Name: TTS
+Version: 0.0.1
+Summary: Text to Speech with Deep Learning
+Home-page: https://github.com/mozilla/TTS
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Provides-Extra: bin
