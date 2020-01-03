@@ -1,4 +1,6 @@
-# Chatbot
+# Conversational-AI
+
+Hybrid Conversational Bot based on both neural retrieval and neural generative mechanism with TTS. 
 
 ## Credits:
 
@@ -17,6 +19,8 @@ Here's my explorted miniconda environment: https://github.com/JRC1995/Chatbot/bl
 ## Project Setup
 
 ### Component # 1: Scripted Module
+### Component # 2: Retrieval Module
+### Component # 3: Retrieval Module
 
 
 (under construction)
