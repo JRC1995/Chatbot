@@ -18,9 +18,18 @@ See Project Report [here](https://github.com/JRC1995/Chatbot/blob/master/Project
 
 Here's my explorted miniconda environment: https://github.com/JRC1995/Chatbot/blob/master/chatbot.yml
 
+## Original Directory
+
+This shows how the directory should be set up. It shows all the files and folders unfiltered along with all the big model weights that were not uploaded to the repository:
+
+
+
 ## Project Setup
 
 ### Component # 0: Sentence Encoder Module
+The sentence encoder is one of the most fundamental components of the project. It uses a concatenation of [Multi-context ConveRT](https://github.com/PolyAI-LDN/polyai-models#multi-context-convert) and [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) to encode utterances. The encoder utterances are used for almost all the other modules - for retrieval, for classification etc. For this module to work you need download and store the model in the appropriate directory inside Sentence_Encoder. Refer to the directory tree for the extact location.
+
+
 ### Component # 1: Scripted Module
 ### Component # 2: Retrieval Module
 ### Component # 3: Dialog-Act Classifier Module
