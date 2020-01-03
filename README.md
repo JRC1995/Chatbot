@@ -23,7 +23,9 @@ Here's my explorted miniconda environment: https://github.com/JRC1995/Chatbot/bl
 ### Component # 2: Retrieval Module
 ### Component # 3: Dialog-Act Classifier Module
 ### Component # 4: Generative Module
-### Component # 5: TTS Module
+### Component # 5: Ranker Module
+### Component # 6: TTS Module
+### Component # 7: Controller Module
 
 
 (under construction)
