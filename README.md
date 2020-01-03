@@ -378,7 +378,7 @@ In my case, I downloaded data from last few years (the latest year being 2018) a
 
 How are these data use? Depending on the user utterances, certain 'command codes' may be activated by the scripted module and depending on the command codes the retrieved response may come from a certain csv file from here.
 
-For example, if you say "I want to hear a joke", the scripted module may return "<JOKE>" as an answer. "<JOKE>" will then be identified as not a natural language response but a "command code" which is mapped with some special action. In this case the special action, is retrieving randomly some title and self-text from jokesq.csv and respond with the concatenation of the two. 
+For example, if you say "I want to hear a joke", the scripted module may return "\<JOKE\>" as an answer. "\<JOKE\>" will then be identified as not a natural language response but a "command code" which is mapped with some special action. In this case the special action, is retrieving randomly some title and self-text from jokesq.csv and respond with the concatenation of the two. 
 
 
 ### Component # 2: Retrieval Module
