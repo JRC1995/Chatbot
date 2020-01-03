@@ -12,4 +12,11 @@
 
 ## Requirements:
 
-(Under Construction)
+Here's my explorted miniconda environment: https://github.com/JRC1995/Chatbot/blob/master/chatbot.yml
+
+## Project Setup
+
+### Component # 1: Scripted Module
+
+
+(under construction)
