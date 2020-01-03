@@ -18,9 +18,12 @@ Here's my explorted miniconda environment: https://github.com/JRC1995/Chatbot/bl
 
 ## Project Setup
 
+### Component # 0: Sentence Encoder Module
 ### Component # 1: Scripted Module
 ### Component # 2: Retrieval Module
-### Component # 3: Retrieval Module
+### Component # 3: Dialog-Act Classifier Module
+### Component # 4: Generative Module
+### Component # 5: TTS Module
 
 
 (under construction)
