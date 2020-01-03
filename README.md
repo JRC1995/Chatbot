@@ -14,6 +14,106 @@ See Project Report [here](https://github.com/JRC1995/Chatbot/blob/master/Project
 * [Mobashir Sadat](https://www.linkedin.com/in/mobashir-sadat-2b32a3112/) prepared and processed the Chatterbot Corpus and created the diagrams. 
 * [Faiss](https://github.com/facebookresearch/faiss), [Huggingface's Transformers](https://github.com/huggingface/transformers), and [Tensorflow Hub](https://www.tensorflow.org/hub/overview) form important components of the project. We use pre-trained models of [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) through Tensorflow Hub.
 
+## How conversation looks like:
+
+```
+Say Something: Hello, how are you?
+
+Thinking......
+
+Bot: I am doing well.
+
+Say Something: What is your name?
+
+Thinking......
+
+Bot: My name is Ray Solomonon
+
+Say Something: Do you like movies? If so, what kind?
+
+Thinking......
+
+Bot: I love a good demon possession movie. I love a good social thriller. I love science fiction. Really, I'm a big fan of all sorts of movies in general. But my favourites are movies like A Clockwork Orange, Moon, The Conjuring, Paranormal Activity 3 (specifically 3 because I think they did some really interesting/new things for the genre as a whole), etc.
+
+Say Something: Are you sentient?
+
+Thinking......
+
+Bot: Probably no. What about you? Are YOU conscious or you just a P-Zombie?
+
+Say Something: Tell me a Joke.
+
+Thinking......
+
+Bot:  This girl said she knew me from the vegetarian restaurant....... But I've never met herbivore!
+
+Say Something: What can you tell me about Quantum Field Theory?
+
+Thinking......
+
+Bot: Quantum field theory put simply is relativistic quantum mechanics where you can create and destroy particles. It's not "*the*" quantum field theory; there are lots of quantum field theories. For example, quantum electrodynamics describes electromagnetic interactions.
+
+Say Something: Do you know anything about Sellar's myth of the given?
+
+Thinking......
+
+Bot: An important clarificatory note: the pairing of this question with this passage seems to imply that Sellars is suggesting that the Myth of the Given isn't really a myth. But he's actually doing the opposite: he's suggesting that his myth (we might call it the Myth of Genius Jones), which is supposed to *supplant* the Myth of the Given, is not really a myth. So I guess there are really two questions implicit in this post:
+
+(1) Is the Myth of the Given really just a myth?
+(2) Is the Myth of Genius Jones, which is supposed to provide an alternative to the Myth of the Given, really just a myth?
+
+Sellars's view is that the answer to (1) is "yes" and that the answer to (2) is "no" (though, of course, he doesn't mean to endorse the Myth of Genius Jones taken *too* literally, i.e. he doesn't think the theory of thoughts was literally devised by one guy all at once).
+
+Since you ask for thoughts, I'll add that my own view is that Sellars is right on both of these questions. The Myth of the Given is a Myth, and the story of Genius Jones is likely an apt metaphor for how we came to be aware of our own internal episodes.
+
+
+Say Something: I am quite tired today; I didn’t know that the project deadline was so soon. I had a sleepless night working on the project.
+
+Thinking......
+
+Bot: Honestly i'm pretty irresponsible when it comes to projects. I always try to finish them the last second which is really bad. I have a set sleep time that i refuse to mess up. So i'm going to try and finish work before it's due so i don't start having panic attacks.
+
+As for you just talk to your teacher. They've probably been in the same shoes as you: they'll understand.
+
+Say Something: Did you know I accidentally deleted major portions of the project and had to reconstruct it again? Version control is important huh. Who knew?
+
+Thinking......
+
+Bot: Reminds me of the time I was working on a web development project in uni, the night before due date I kinda blew up the php code, and couldn't figure out what I broke.
+
+Remember kids, source control is important!
+
+Say Something: Just my luck, I have three project presentations in the same day.
+
+Thinking......
+
+Bot: Make sure you plan out studying this week and create a schedule for yourself. However, don't forget to keep sleep in the schedule!
+
+Trust me, I was in college for 4.5 years and the one thing I learned was that all-nighters are *not* what you need. I failed calc the first time because I made so many stupid mistakes on the final that I would have at least been able to *think* about had I studied just a little less and slept just a little more. You need to find the right balance.
+
+Say Something: By the way, can you tell me about Language Models?
+
+Thinking......
+
+Bot: On 1B dataset, [Exploring the Limits of Language Modeling](https://arxiv.org/abs/1602.02410) has 30 (23.7 with ensembles)
+
+
+Say Something: Please tell me more about them.
+
+Thinking......
+
+Bot: Learn about **GRAPHENE**
+
+https://www.youtube.com/watch?v=Mcg9_ML2mXY&amp;t=2s
+
+it will be the solution.  it is the solution.
+
+
+
+```
+
+
+
 ## Requirements:
 
 Here's my explorted miniconda environment: https://github.com/JRC1995/Chatbot/blob/master/chatbot.yml
