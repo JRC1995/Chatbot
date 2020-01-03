@@ -2,6 +2,8 @@
 
 Hybrid Conversational Bot based on both neural retrieval and neural generative mechanism with TTS. 
 
+See Project Report [here](https://github.com/JRC1995/Chatbot/blob/master/Project%20Report.pdf). Note, however, that the report refers to an older version of the project which was much slower, which didn't use FAISS or TTS. 
+
 ## Credits:
 
 * The [TTS Folder](https://github.com/JRC1995/Chatbot/tree/master/TTS) is based on an earlier version of [Mozilla TTS](https://github.com/mozilla/TTS). I prepared the [text2speech.py](https://github.com/JRC1995/Chatbot/blob/master/TTS/text2speech.py) file which acts as an interface to the rest of the project.
