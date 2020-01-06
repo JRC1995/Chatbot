@@ -507,10 +507,31 @@ interact.py and co. (interact_retrieval_only.py, interact_generator_only.py etc.
 
 ## Running the Project
 
-If everything is set up, you are ready to run the project. 
+If everything is set up, you are ready to run the project. To run the normal project as normal use:
 
+```
+python interact.py
+```
 
-(under construction)
+To run the project with TTS voice disabled use (should work for other interact_(x).py files):
+
+```
+python interact.py --no-voice
+```
+To run the project in verbose mode (which shows where the responses are coming from - from reddit? from dialoGPT? from script? and the classified dialog acts), use:
+
+```
+python interact_verbose.py
+```
+To run the project without generator:
+```
+python interact_retrieval_only.py
+```
+To run the project allowing only the generator to generate candidate responses:
+```
+python interact_generator_only.py
+```
+
 
 
 
