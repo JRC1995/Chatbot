@@ -457,13 +457,57 @@ If this file was not available you would have to do the following steps:
 
 
 ### Component # 4: Generative Module
+
+The generative module is based on DialoGPT. See:
+
+https://github.com/microsoft/DialoGPT
+https://arxiv.org/abs/1911.00536
+
+I created a custom decoder based on [Nucleus Sampling](https://arxiv.org/pdf/1904.09751.pdf). Essentially I am creating multiple sample responses in a batch using Nucleus Sampling. I was experimenting with other approaches (diverse beam decoding with nucleus sampling and such - but weren't able to get as diverse of responses - the experimental codes are available [here](https://github.com/JRC1995/Chatbot/tree/master/Generator/Experimental%20Codes)).
+
+To setup this module you only need to download the pre-trained files.
+
+You need to make sure these files are available in these directories:
+
+```
+├── Generator
+│   ├── DialoGPT
+│   │   └── Parameters
+│   │       ├── medium_ft.pkl
+│   │       └── small_reverse.pkl
+```
+
+[medium_ft.pkl can be downloaded from here](https://convaisharables.blob.core.windows.net/lsp/multiref/medium_ft.pkl).
+[small_reverse.pkl can be downloaded from here](https://convaisharables.blob.core.windows.net/lsp/multiref/small_reverse.pkl). 
+
+
 ### Component # 5: Ranker Module
+
+All these above modules together usally end up generating multiple candidate responses. Often scripted responses, retrieved responses, and generated responses together form the list of candidate responses. But we have to select one. This module is responsible for ranking and scoring each candidate response. This module is based two methods - cosine similarity based on query and response encodings from Universal Sentence QA and a reverse generator using the principle of [maximum mutual information](https://arxiv.org/abs/1510.03055). It uses a weighted average of the scores from the two methods. See the [project report](https://github.com/JRC1995/Chatbot/blob/master/Project%20Report.pdf) for more details. 
+
+You don't need to do anything to prepare this module. 
+
 ### Component # 6: TTS Module
+
+This module is based on an [older repository of Mozilla TTS](https://github.com/mozilla/TTS/tree/bf7590). 
+I also tried a newer version, but the practical results were not too better. And WaveRNN is very slow. 
+To prepare this module, download this [pre-trained model](https://drive.google.com/drive/folders/1A5Hr6aSvfGgIiE20mBkpzyn3vvbR2APj) (Tacotron-iter-120K in [here](https://github.com/mozilla/TTS/wiki/Released-Models)). Then keep them here:
+
+```
+├── TTS
+│   ├── tts_model
+│   │   ├── best_model.pth.tar
+│   │   └── config.json
+```
+
+
 ### Component # 7: Controller Module
 
+interact.py and co. (interact_retrieval_only.py, interact_generator_only.py etc.) acts as the controller module. This file interfaces, co-ordinates, and handle the communication among all the different modules. You do not need to do anything further with this files.  
 
 ## Running the Project
 
+If everything is set up, you are ready to run the project. 
 
 
 (under construction)
