@@ -387,13 +387,75 @@ For example, if you say "I want to hear a joke", the scripted module may return 
 
 ### Component # 2: Retrieval Module
 
-Retrieval Module is similar to scripted module. It also deals with query-responses mappings and retrieving based on cosine-similarity or dot-product between the encodings of preset queries and user utterances. The difference is that it operates solely on large scale organic data (precisely, it's Reddit data again). To prepare this module we have to again prepare a lot of csv files from different subreddits. 
+Retrieval Module is similar to scripted module. It also deals with query-responses mappings and retrieving based on cosine-similarity or dot-product between the encodings of preset queries and user utterances. The difference is that it operates solely on large scale organic data (precisely, it's Reddit data again). To prepare this module we have to again prepare a lot of csv files from different subreddits. Specifically you need to have these files:
+
+```
+'Retriever/Data/adviceq.csv' (from r/Advice),
+'Retriever/Data/askphilosophyq.csv' (from r/askphilosophy),
+'Retriever/Data/askredditq.csv' (from r/AskReddit),
+'Retriever/Data/mlq.csv' (from r/MachineLearning),
+'Retriever/Data/casualq.csv' (from r/CasualConversation),
+'Retriever/Data/eli5q.csv' (from r/explainlikeimfive),
+'Retriever/Data/askscienceq.csv' (from r/AskScience),
+'Retriever/Data/advicea.csv' (from r/Advice),
+'Retriever/Data/askphilosophya.csv' (from r/askphilosophy),
+'Retriever/Data/askreddita.csv' (from r/AskReddit),
+'Retriever/Data/mla.csv' (from r/MachineLearning),
+'Retriever/Data/casuala.csv' (from r/CasualConversation),
+'Retriever/Data/eli5a.csv' (from r/explainlikeimfive),
+'Retriever/Data/asksciencea.csv' (from r/AskScience)
+```
+
+The files ending with 'q' refers to queries (utterances to respond to) and files ending with 'a' refers to candidate responses (answers). Each file ending with 'q' have data from reddit threads (submissions/posts) whereas each file ending with 'a' have data from reddit comments. I treat top level comments as candidate responses where thread title act as the query utterance. 
+
+The csv files ending with q requires the following fields:
+
+```
+title, id
+```
+The csv files ending with 'a' requires the following fields:
+
+```
+body, id, parent_id, link_id
+```
+
+The order is not important. You can prepare the csv data by any means. You can use google big query or other sources mentioned in the scripted module section.
+
+You can also use different csv files. Just change the filepaths_q and filepaths_a list [here](https://github.com/JRC1995/Chatbot/blob/master/Retriever/fill_data.py) accordingly.
+
+After the csv files are setup execute the following steps in the following order:
+
+1. Run [fill_data.py](https://github.com/JRC1995/Chatbot/blob/master/Retriever/fill_data.py)  (to prepare a Sqlite database with queires and candidate responses along with their encodings)
+2. Run [faiss_it.py](https://github.com/JRC1995/Chatbot/blob/master/Retriever/faiss_it.py) (prepare faiss indexing and related stuff for fast retrieval)
 
 
-
+WARNING: fill_data.py may take a long time (because of encoding a lot of texts). And there may also be some kind of memory leak which makes the memory keep on accumulating leading to termination. Not sure how to exactly fix it. An ugly workaround would be to do the processing in steps (like run for one subreddit csv (corresponding q and a files), terminate and then run for another). 
 
 
 ### Component # 3: Dialog-Act Classifier Module
+
+This module attempts to classify the dialog act of a given utterance. The available dialog act classes are:
+
+```
+['nonsense', 'dev_command', 'open_question_factual', 'appreciation', 'other_answers', 'statement', \
+'respond_to_apology', 'pos_answer', 'closing', 'comment', 'neg_answer', 'yes_no_question', 'command', \
+'hold', 'NULL', 'back-channeling', 'abandon', 'opening', 'other', 'complaint', 'opinion', 'apology', \
+'thanking', 'open_question_opinion']
+```
+
+See [here](https://arxiv.org/abs/1908.10023) for more details on the classes. Depending on the class different actions are taken in interact.py or interact_(x).py. 
+
+To prepare this module you don't have to do anything as the pre-trained model is already available [here](https://github.com/JRC1995/Chatbot/tree/master/Classifier/Model_Backup).
+
+If this file was not available you would have to do the following steps:
+
+1. Run [Classifer/data/process_data.py](https://github.com/JRC1995/Chatbot/blob/master/Classifier/data/process_data.py)
+2. Run [Classifier/train_and_test/train.py](https://github.com/JRC1995/Chatbot/blob/master/Classifier/train_and_test/train.py)
+
+
+
+
+
 ### Component # 4: Generative Module
 ### Component # 5: Ranker Module
 ### Component # 6: TTS Module
