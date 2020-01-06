@@ -124,7 +124,7 @@ it will be the solution.  it is the solution.
 
 ## Video:
 
-[![IMAGE ALT TEXT HERE](https://imgur.com/CbJUafs)](https://www.youtube.com/watch?v=Zbz-vEp5coo)
+[![IMAGE ALT TEXT HERE](https://i.imgur.com/CbJUafs.png)](https://www.youtube.com/watch?v=Zbz-vEp5coo)
 
 
 ## Requirements:
