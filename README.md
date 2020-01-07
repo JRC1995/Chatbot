@@ -21,6 +21,10 @@ for contraction expansion.
 
 Both the Generative and Retrieval Module runs on Reddit data - which can be offensive or toxic. (although for the retrieval module, I haven't shared its data and whatever data you prepare is your responsibility) 
 
+## Project Overview:
+
+![alt text](https://raw.githubusercontent.com/JRC1995/Chatbot/master/421_Project_1.png)
+
 ## How conversation looks like:
 
 (Most of them are retrieved from Reddit Database)
