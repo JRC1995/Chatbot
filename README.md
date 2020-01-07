@@ -500,7 +500,7 @@ You don't need to do anything to prepare this module.
 ### Component # 6: TTS Module
 
 This module is based on an [older repository of Mozilla TTS](https://github.com/mozilla/TTS/tree/bf7590). 
-I also tried a newer version, but the practical results were not too better. And WaveRNN is very slow. 
+I also tried a newer version with Tacotron-2, but the practical results was worse on a lot of segments. WaveRNN made the voice much better but there were still issues with skipping or skimming through some portions of the text segments. Furthermore, WaveRNN makes this very slow. 
 To prepare this module, download this [pre-trained model](https://drive.google.com/drive/folders/1A5Hr6aSvfGgIiE20mBkpzyn3vvbR2APj) (Tacotron-iter-120K in [here](https://github.com/mozilla/TTS/wiki/Released-Models)). Then keep them here:
 
 ```
