@@ -135,6 +135,10 @@ it will be the solution.  it is the solution.
 
 Here's my explorted miniconda environment: https://github.com/JRC1995/Chatbot/blob/master/chatbot.yml
 
+Also do:
+
+> apt-get install ffmpeg libavcodec-extra
+
 ## Original Directory
 
 This shows how the directory should be set up. It shows all the files and folders unfiltered along with all the big model weights that were not uploaded to the repository:
