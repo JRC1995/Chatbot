@@ -12,14 +12,14 @@ See Project Report [here](https://github.com/JRC1995/Chatbot/blob/master/Project
 * The [data here in Classifier](https://github.com/JRC1995/Chatbot/tree/master/Classifier/data) is from [MIDAS_dialog_act repository](https://github.com/DianDYu/MIDAS_dialog_act)
 * The corpus [here](https://github.com/JRC1995/Chatbot/tree/master/Scripted/Chatterbot_Corpus) is taken from [Chatterbot_Corpus library](https://github.com/gunthercox/chatterbot-corpus/tree/master/chatterbot_corpus/data/english)
 * [Mobashir Sadat](https://www.linkedin.com/in/mobashir-sadat-2b32a3112/) prepared and processed the Chatterbot Corpus and created the diagrams. 
-* [Faiss](https://github.com/facebookresearch/faiss), [Huggingface's Transformers](https://github.com/huggingface/transformers), and [Tensorflow Hub](https://www.tensorflow.org/hub/overview) form important components of the project. We use pre-trained models of [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) through Tensorflow Hub.
+* [Faiss](https://github.com/facebookresearch/faiss), [Huggingface's Transformers](https://github.com/huggingface/transformers), and [Tensorflow Hub](https://www.tensorflow.org/hub/overview) are important components of the project. We use pre-trained models of [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) through Tensorflow Hub.
 * Utils/functions.py and Utils/functions_old.py utilize a code from here: https://gist.github.com/nealrs/96342d8231b75cf4bb82
 for contraction expansion.
 
 
 ## Disclaimer:
 
-Both the Generative and Retrieval Module runs on Reddit data - which can be offensive or toxic. (although for the retrieval module, I haven't shared its data and whatever data you prepare is your responsibility) 
+Both the Generative and Retrieval Module runs on Reddit data which can be offensive or toxic.
 
 ## Project Overview:
 
@@ -133,7 +133,7 @@ it will be the solution.  it is the solution.
 
 ## Requirements:
 
-Here's my explorted miniconda environment: https://github.com/JRC1995/Chatbot/blob/master/chatbot.yml
+Here's my exploted miniconda environment: https://github.com/JRC1995/Chatbot/blob/master/chatbot.yml
 
 Also do:
 
@@ -364,23 +364,23 @@ I am sharing the pre-set project directory on [drive](https://drive.google.com/f
 ## Project Setup
 
 ### Component # 0: Sentence Encoder Module
-The sentence encoder is one of the most fundamental components of the project. It uses a concatenation of [Multi-context ConveRT](https://github.com/PolyAI-LDN/polyai-models#multi-context-convert) and [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) to encode utterances. The encoder utterances are used for almost all the other modules - for retrieval, for classification etc. For this module to work you need download and store the model in the appropriate directory inside Sentence_Encoder. Refer to the directory tree for the extact location. Specifically, the content inside tensorflow-hub pretrained ConveRT model should go within Sentence_Encoder/Embeddings/ConvRT directory, and Universal Sentence Encoder Multilingual QA should go within Sentence_Encoder/Embeddings/USE_QA. The sentence encoder uses different components for encoding user utterances than that for encoding response candidates. It also can take context into account. See project report for details.
+The sentence encoder is one of the most fundamental components of the project. It uses a concatenation of [Multi-context ConveRT](https://github.com/PolyAI-LDN/polyai-models#multi-context-convert) and [Universal Sentence Encoder QA](https://tfhub.dev/google/universal-sentence-encoder-multilingual-qa/3) to encode utterances. The encoded utterances are used for almost all the other modules - for retrieval, for classification, for ranking etc. For this module to work you need to download and store the model in the appropriate directory inside Sentence_Encoder. Refer to the directory tree for the extact location. Specifically, the content inside tensorflow-hub pretrained ConveRT model should go within Sentence_Encoder/Embeddings/ConvRT directory, and Universal Sentence Encoder Multilingual QA should go within Sentence_Encoder/Embeddings/USE_QA. The sentence encoder uses different components for encoding user utterances than that for encoding response candidates. It also can take context into account. See project report for details.
 
 
 ### Component # 1: Scripted Module
 
-Rum setup.py inside the [scripted folder](https://github.com/JRC1995/Chatbot/tree/master/Scripted) to process all the necessary documents for this module. This module mostly prepares "query-responses" pair mappings. Given an utterance, the model finds the best matching query (by measuring cosine similarity or dot product of their encodings) and returns its corresponding responses. 
+Run setup.py inside the [scripted folder](https://github.com/JRC1995/Chatbot/tree/master/Scripted) to process all the necessary documents for this module. This module mostly prepares "query-responses" pair mappings. Given an utterance, the model finds the best matching query (by measuring cosine similarity or dot product of their encodings) and returns its corresponding responses. 
 
 [Here](https://github.com/JRC1995/Chatbot/blob/master/Scripted/Subscripts/intent_response_script.py) you can write your "intent to response" maps. You can create any kind of new 'intent' (say '<fetch_water>') and you can then write the list of candidate responses for that intent. Instead of writing natural language responses you can also type in "command codes" (say <get_water>) and later upon detecting the command codes you can make the AI take any related action you want. [Here](https://github.com/JRC1995/Chatbot/blob/master/Scripted/Subscripts/intent_query_script.py) you can write "intent to query" maps. For example:
 
 ```
 '<fetch_water>':['bring me some water','I want some water']
 ```
-That is here you map intents to potential queries and utterances related to that intent. You don't need to exhaustive - the intent will be detected based on soft embedding based semantic-similarity search not through hard pattern matching.
+That is here you map intents to potential queries and utterances related to that intent. You don't need to be exhaustive - the intent will be detected based on soft embedding based semantic-similarity search not through hard pattern matching.
 
 You also need to keep downloaded Reddit data in Scripted/Random_Reddit_Data/ directory.
 
-For this, I used Google Big Query to query out data from different subreddits and prepared different CSVs. I prepared jokesq.csv from r/Jokes, showerthoughsq.csv from r/Showerthoughts, tilq.csv from r/todayilearned, and nostupidq.csv from r/NoStupidQuestion. Each of these csv should have a 'title' field (denotes thread title), and jokesq.csv should also have the 'self-text' field (denotes the original post of a thread). Each of these csv are prepared from reddit submissions (not comments). In addition to all these, I also prepared writingpromptsa.csv from r/WritingPrompts but for this the necessary field are 'body' (denotes the comment text), 'parent_id' (denotes id of the immediate parent -comment or thread), and 'link_id' (denotes id of the thread in which the comment is made). This fields are essentially table attributes when you are using sql on Google Query. 
+For this, I used Google Big Query to query out data from different subreddits and prepared different CSVs. I prepared jokesq.csv from r/Jokes, showerthoughsq.csv from r/Showerthoughts, tilq.csv from r/todayilearned, and nostupidq.csv from r/NoStupidQuestion. Each of these csv should have a 'title' field (denotes thread title), and jokesq.csv should also have the 'self-text' field (denotes the original post of a thread). Each of these CSVs are prepared from reddit submissions\posts (not comments). In addition to all these, I also prepared writingpromptsa.csv from r/WritingPrompts but for this the necessary fields are 'body' (denotes the comment text), 'parent_id' (denotes id of the immediate parent -comment or thread), and 'link_id' (denotes id of the thread in which the comment is made). These fields are essentially table attributes when you are using sql on Google Query. 
 For more about downloading Reddit Data from Google Big Query see:
 
 
@@ -394,14 +394,14 @@ You can also use this: https://files.pushshift.io/reddit/ (download comments and
 
 In my case, I downloaded data from last few years (the latest year being 2018) and I also used 'scores' (denotes upvotes) as filter (I only kept highly upvoted ones). The threshold of score depends on the subreddits (popular subreddits can have frequent comments and posts with thousands of upvotes, in less popular ones getting 5 upvotes can be a big deal). 
 
-How are these data use? Depending on the user utterances, certain 'command codes' may be activated by the scripted module and depending on the command codes the retrieved response may come from a certain csv file from here.
+How are these data used? Depending on the user utterances, certain 'command codes' may be activated by the scripted module and depending on the command codes the retrieved response may come from a certain csv file from here.
 
-For example, if you say "I want to hear a joke", the scripted module may return "\<JOKE\>" as an answer. "\<JOKE\>" will then be identified as not a natural language response but a "command code" which is mapped with some special action. In this case the special action is randomly retrieving a row from jokesq.csv and respond with the concatenation of the title and self-text in that row. 
+For example, if you say "I want to hear a joke", the scripted module may return "\<JOKE\>" as an answer. "\<JOKE\>" will then be identified as not a natural language response but a "command code" which is mapped with some special action. In this case, the special action is randomly retrieving a row from jokesq.csv and responding with the concatenation of the title and self-text in that row. 
 
 
 ### Component # 2: Retrieval Module
 
-Retrieval Module is similar to scripted module. It also deals with query-responses mappings and retrieving based on cosine-similarity or dot-product between the encodings of preset queries and user utterances. The difference is that it operates solely on large scale organic data (precisely, it's Reddit data again). To prepare this module we have to again prepare a lot of csv files from different subreddits. Specifically you need to have these files:
+Retrieval Module is similar to the scripted module. It also deals with query-responses mappings and retrieving based on cosine-similarity or dot-product between the encodings of preset queries and user utterances. The difference is that it operates solely on large scale organic data (precisely, it's Reddit data again). To prepare this module we have to again prepare a lot of csv files from different subreddits. Specifically you need to have these files:
 
 ```
 'Retriever/Data/adviceq.csv' (from r/Advice),
@@ -420,14 +420,14 @@ Retrieval Module is similar to scripted module. It also deals with query-respons
 'Retriever/Data/asksciencea.csv' (from r/AskScience)
 ```
 
-The files ending with 'q' refers to queries (utterances to respond to) and files ending with 'a' refers to candidate responses (answers). Each file ending with 'q' have data from reddit threads (submissions/posts) whereas each file ending with 'a' have data from reddit comments. I treat top level comments as candidate responses where thread title act as the query utterance. 
+The files ending with 'q' refers to queries (utterances to respond to) and files ending with 'a' refers to candidate responses (answers). Each file ending with 'q' have data from reddit threads (submissions/posts) whereas each file ending with 'a' have data from reddit comments. I treat top level comments as candidate responses whereas thread titles act as the query utterance. 
 
-The csv files ending with q requires the following fields:
+The CSV files ending with q require the following fields:
 
 ```
 title, id
 ```
-The csv files ending with 'a' requires the following fields:
+The CSV files ending with 'a' require the following fields:
 
 ```
 body, id, parent_id, link_id
@@ -435,7 +435,7 @@ body, id, parent_id, link_id
 
 The order is not important. You can prepare the csv data by any means. You can use google big query or other sources mentioned in the scripted module section.
 
-You can also use different csv files. Just change the filepaths_q and filepaths_a list [here](https://github.com/JRC1995/Chatbot/blob/master/Retriever/fill_data.py) accordingly.
+You can also use different CSV files. Just change the filepaths_q and filepaths_a list [here](https://github.com/JRC1995/Chatbot/blob/master/Retriever/fill_data.py) accordingly.
 
 After the csv files are setup execute the following steps in the following order:
 
@@ -443,7 +443,7 @@ After the csv files are setup execute the following steps in the following order
 2. Run [faiss_it.py](https://github.com/JRC1995/Chatbot/blob/master/Retriever/faiss_it.py) (prepare faiss indexing and related stuff for fast retrieval)
 
 
-WARNING: fill_data.py may take a long time (because of encoding a lot of texts). And there may also be some kind of memory leak which makes the memory keep on accumulating leading to termination. Not sure how to exactly fix it. An ugly workaround would be to do the processing in steps (like run for one subreddit csv (corresponding q and a files), terminate and then run for another). 
+WARNING: fill_data.py may take a long time (because of encoding a lot of texts). And there may also be some kind of memory leakage which makes the memory keep on accumulating leading to termination. I have not looked too deep into how to exactly fix it. An ugly workaround would be to do the processing in steps (like, run for one subreddit CSV(corresponding q and a files), terminate after completing, and then run again for another subreddit). 
 
 
 ### Component # 3: Dialog-Act Classifier Module
@@ -481,7 +481,7 @@ I created a custom decoder based on [Nucleus Sampling](https://arxiv.org/pdf/190
 
 To setup this module you only need to download the pre-trained files.
 
-You need to make sure these files are available in these directories:
+You need to make sure that these files are available in these directories:
 
 ```
 ├── Generator
@@ -498,7 +498,7 @@ You need to make sure these files are available in these directories:
 
 ### Component # 5: Ranker Module
 
-All these above modules together usally end up generating multiple candidate responses. Often scripted responses, retrieved responses, and generated responses together form the list of candidate responses. But we have to select one. This module is responsible for ranking and scoring each candidate response. This module is based two methods - cosine similarity based on query and response encodings from Universal Sentence QA and a reverse generator using the principle of [maximum mutual information](https://arxiv.org/abs/1510.03055). It uses a weighted average of the scores from the two methods. See the [project report](https://github.com/JRC1995/Chatbot/blob/master/Project%20Report.pdf) for more details. 
+All these above modules together usally end up generating multiple candidate responses. Often scripted responses, retrieved responses, and generated responses together form the list of candidate responses. But we have to select one. This module is responsible for ranking and scoring each candidate response. This module is based on two methods - cosine similarity based on query and response encodings from Universal Sentence QA and a reverse generator using the principle of [maximum mutual information](https://arxiv.org/abs/1510.03055). It uses a weighted average of the scores from the two methods. See the [project report](https://github.com/JRC1995/Chatbot/blob/master/Project%20Report.pdf) for more details. 
 
 You don't need to do anything to prepare this module. 
 
@@ -518,7 +518,7 @@ To prepare this module, download this [pre-trained model](https://drive.google.c
 
 ### Component # 7: Controller Module
 
-interact.py and co. (interact_retrieval_only.py, interact_generator_only.py etc.) acts as the controller module. This file interfaces, co-ordinates, and handle the communication among all the different modules. You do not need to do anything further with this files.  
+interact.py and co. (interact_retrieval_only.py, interact_generator_only.py etc.) acts as the controller module. This file interfaces, co-ordinates, and handle the communication among all the different modules. You do not need to do anything further with these files.  
 
 ## Running the Project
 
