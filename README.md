@@ -356,10 +356,6 @@ This shows how the directory should be set up. It shows all the files and folder
 
 ```
 
-## Pre-setup Project
-
-I am sharing the pre-set project directory on [drive](https://drive.google.com/file/d/14IqJ88Vqx6NqZSC9vcWsWaB4UOmFRjYB/view?usp=sharing). This version can be run directly after setting up the environment without any extra effort. However I may only share this temporarily. 
-
 
 ## Project Setup
 
