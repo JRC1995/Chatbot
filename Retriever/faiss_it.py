@@ -25,10 +25,9 @@ print(queries[0:5])
 print("\n\n")
 print(index.search(queries[0:5],k=5))
 
-"""
 
 faiss.write_index(index, "Faiss_index/large.index")
 
 with open("Faiss_index/thread_idx.pkl",'wb') as fp:
     pickle.dump(idx,fp)
-"""
+
