@@ -133,7 +133,7 @@ it will be the solution.  it is the solution.
 
 ## Requirements:
 
-Here's my exploted miniconda environment: https://github.com/JRC1995/Chatbot/blob/master/chatbot.yml
+Here's my exported miniconda environment: https://github.com/JRC1995/Chatbot/blob/master/chatbot.yml
 
 Also do:
 
