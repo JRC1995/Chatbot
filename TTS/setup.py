@@ -70,7 +70,7 @@ setup(
         'build_py': build_py,
         'develop': develop,
     },
-    setup_requires=["numpy==1.14.3"],
+    setup_requires=["numpy==1.22.0"],
     install_requires=[
         "librosa==0.5.1",
         "unidecode==0.4.20",
